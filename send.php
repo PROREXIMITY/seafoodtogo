@@ -2,9 +2,9 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'seafoodtogo/src/Exception';
-require 'seafoodtogo/src/PHPMailer.php';
-require 'seafoodtogo/src/SMTP.php';
+require 'src/Exception';
+require 'src/PHPMailer.php';
+require 'src/SMTP.php';
 
 
 if(isset($_POST["send"])){
