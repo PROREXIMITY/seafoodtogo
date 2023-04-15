@@ -2,14 +2,18 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'src/Exception';
+// require 'PHPMailer/src/Exception';
+// require 'PHPMailer/src/PHPMailer.php';
+// require 'PHPMailer/src/SMTP.php';
+
+require 'src/Exception.php';
 require 'src/PHPMailer.php';
 require 'src/SMTP.php';
 
 
 if(isset($_POST["send"])){
   $mail = new PHPMailer(true);
-
+  
   $mail->isSMTP();
   $mail->Host = 'smtp.gmail.com';
   $mail->SMTPAuth = true;
@@ -24,12 +28,21 @@ if(isset($_POST["send"])){
 
   $mail->isHTML(true);
 
-  $mail->Subject= $_POST["subject"];
+  $mail->Subject = $_POST["subject"];
   $mail->Body = $_POST["message"];
 
   $mail->send();
 
-  echo "<script> alert('Sent Successfully'); document.location.href = 'index.php';";
+  echo 
+  "
+  <script> 
+  alert('Sent Successfully'); 
+  document.location.href = 'index.php';
+  </script>
+  ";
+  
+}else {
+  echo "Error!";
 }
 ?>
 
