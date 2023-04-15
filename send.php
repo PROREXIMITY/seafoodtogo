@@ -5,6 +5,7 @@ use PHPMailer\PHPMailer\Exception;
 require 'PHPMailer/src/Exception';
 require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
+// require 'vendor/autoload.php'
 
 if(isset($_POST["send"])){
   $mail = new PHPMailer(true);
@@ -13,7 +14,7 @@ if(isset($_POST["send"])){
   $mail->Host = 'smtp.gmail.com';
   $mail->SMTPAuth = true;
   $mail->Username='xhdarcen@gmail.com';
-  $mail->Password='mmor qcrp scbd jddx';
+  $mail->Password='vxotoamrplquoobu';
   $mail->SMTPSecure='ssl';
   $mail->Port= 465;
 
