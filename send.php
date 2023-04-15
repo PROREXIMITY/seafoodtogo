@@ -2,10 +2,10 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'PHPMailer/src/Exception';
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php';
-// require 'vendor/autoload.php'
+require 'seafoodtogo/src/Exception';
+require 'seafoodtogo/src/PHPMailer.php';
+require 'seafoodtogo/src/SMTP.php';
+
 
 if(isset($_POST["send"])){
   $mail = new PHPMailer(true);
@@ -32,3 +32,36 @@ if(isset($_POST["send"])){
   echo "<script> alert('Sent Successfully'); document.location.href = 'index.php';";
 }
 ?>
+
+
+    <!-- $name = $_POST["name"];
+    $email = $_POST["email"];
+    $message = $_POST["message"];
+     
+    $EmailTo = "@gmail.com"; 
+    $Subject = "Portfolio CV/Resume";
+     
+    // prepare email body text
+    
+    $Body .= "Name: ";
+    $Body .= $name;
+    $Body .= "\n"; 
+     
+    $Body .= "Email: ";
+    $Body .= $email;
+    $Body .= "\n";
+     
+    $Body .= "Message: ";
+    $Body .= $message;
+    $Body .= "\n";
+     
+    
+    // send email
+    $success = mail($EmailTo, $Subject, $Body, "From:".$email);
+     
+    // redirect to success page
+    if ($success){
+       echo "success";
+    }else{
+        echo "invalid";
+    }  -->
