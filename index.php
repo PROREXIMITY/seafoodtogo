@@ -87,7 +87,7 @@
               <li><a href="#">Drop Down 4</a></li>
             </ul>
           </li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a class="nav-link scrollto" href="feedback.php">Feedback</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -326,7 +326,7 @@
                 <textarea class="form-control" name="message" rows="5" placeholder="Message" value="" required></textarea>
               </div>
             
-              <div class="text-center"><button type="submit">Send Message</button></div>
+              <div class="text-center" name="send"><button type="submit">Send Message</button></div>
             </form>
           </div>
 
