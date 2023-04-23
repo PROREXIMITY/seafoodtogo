@@ -25,10 +25,10 @@ try {
     </head>
     <body>
         <p> Greetings <strong> '.$name.'! </strong></p>
-        <p>Thank you for your feedback, this is truly noted, Thanks '.$name.'!</p>
+        <p>We have received your message. Thanks you for reaching out to us, '.$name.'!</p>
         <br><br>
-        Have a great day ahead!,<br>
-        Seafood to Go Staff<br>
+        Enjoy your day!,<br>
+        🦐 Seafood to Go Staff 🦀<br>
         <strong></b> SeafoodtoGo</strong>
  
     </body>
