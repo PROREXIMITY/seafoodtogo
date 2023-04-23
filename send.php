@@ -37,17 +37,17 @@ try {
  
     // $mail = new PHPMailer(true);
     $mail->isSMTP();
-    $mail->Host = 'smtp.gmail.com';
+    $mail->Host = 'smtp.hostinger.com';
     $mail->SMTPAuth = true;
-    $mail->Username = 'xhdarcen@gmail.com';
-    $mail->Password = 'oxmzwryklbsbemne';
+    $mail->Username = 'staff@seafoodtogo.store';
+    $mail->Password = 'Xymondarcen27-';
     $mail->SMTPSecure = 'tls';
     $mail->Port = 587;
     $mail->SMTPOptions = array('ssl' => array('verify_peer'       => false,
                                           'verify_peer_name'  => false,
                                           'allow_self_signed' => true));
  
-    $mail->setFrom('xhdarcen@gmail.com', 'Seafood to Go Staff');
+    $mail->setFrom('staff@seafoodtogo.store', 'Seafood to Go Staff');
  
     $mail->addAddress($email); 
     
