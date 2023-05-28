@@ -1,3 +1,30 @@
+<?php
+session_start();
+include 'connection.php';
+if (!isset($_SESSION['uType']) || $_SESSION['uType'] !== 'Admin') {
+	// User is not authenticated or is not a passenger user, redirect to login page
+	header('Location: login.php');
+	exit();
+}
+$query2 = "SELECT * FROM information";
+    $results = mysqli_query($conn, $query2);
+    
+    if (mysqli_num_rows($results) > 0) {
+      
+        $row = mysqli_fetch_assoc($results);
+        $email = $row['email'];
+        $contact = $row['contact'];
+        $address = $row['address'];
+        $gps = $row['gps'];
+        $mission = $row['mission'];
+        $vision = $row['vision'];
+        $fb = $row['facebook'];
+        
+    } else {
+    
+        die("Error: Not found.");
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,8 +37,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="assets/img/sftg2.png" rel="icon">
+  <link href="assets/img/sftg2.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -35,7 +62,38 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
+<style>
+.edit-button {
+    background-color: #f56e00;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
 
+.save-button {
+    background-color: #0f9d58;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+/* .editable {
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+} */
+
+.editable[contenteditable="true"] {
+    background-color: #fff;
+}
+</style>
 <body>
 
   <!-- ======= Top Bar ======= -->
@@ -57,37 +115,18 @@
   <!-- ======= Header ======= -->
   <header id="header" class="d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
-
       <h1 class="logo"><a href="index.html" ><img src="assets/img/sftg2.png" alt=""><span></span></a></h1>
       
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""></a>-->
+   
 
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="nav-link scrollto" href="#services">Services</a></li>
-          <!-- <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
-          <li><a class="nav-link scrollto" href="#team">Team</a></li> -->
-          <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li> -->
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a class="nav-link scrollto" href="admin.php">Admin</a></li>
+          <li><a class="nav-link scrollto" href="logout.php">Logout</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -131,30 +170,31 @@
             <img src="assets/img/sftg3.jpg" class="img-fluid" alt="">
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="100">
-            <h3>We cook Fresh and Delicious Authentic Cajun Seafoods for our customers.</h3>
-            <ul>
-              <li>
+        <h3>We cook Fresh and Delicious Authentic Cajun Seafoods for our customers.</h3>
+            <form method= "post" action= "infoupdate.php">
+        <ul>
+            <li>
+                <i class=""></i>
+                
+                <div>
+                    <h3>Mission</h3>
+                    <label for="mis"></label>
+                    <p class="editable" name = "mission"><?php echo $mission; ?></p>
+                </div>
+            </li>
+            <li>
                 <i class=""></i>
                 <div>
-                  <h3>Mission</h3>
-                  <p>To freshly serve quality Cajun Seafoods.</p>
+                    <h3>Vision</h3>
+                    <label for="vis"></label>
+                    <p class="editable" name = "vision"><?php echo $vision; ?></p>
                 </div>
-              </li>
-              <li>
-                <i class=""></i>
-                <div>
-                  <h3>Vision</h3>
-                  <p>To be recognized as the best Authentic Cajun Seafood Taste.</p>
-                </div>
-              </li>
-            </ul>
-            <p>
-              
-            </p>
-          </div>
-        </div>
-
-      </div>
+            </li>
+        </ul>
+        <button class="edit-button" onclick="toggleEditable()">Edit</button>
+        <button class="save-button" onclick="saveChanges()">Save</button>
+            </form>
+    </div>
     </section><!-- End About Section -->
 
     <!-- ======= Skills Section ======= -->
@@ -168,57 +208,68 @@
 
     <!-- ======= Services Section ======= -->
     <section id="services" class="services">
-      <div class="container" data-aos="fade-up">
+  <div class="container" data-aos="fade-up">
+    <div class="section-title">
+      <!-- <h2>Services</h2> -->
+      <h3>Check our <span> 🦐 Seafood Choices 🦀</span></h3>
+    </div>
 
-        <div class="section-title">
-          <!-- <h2>Services</h2> -->
-          <h3>Check our <span> 🦐 Seafood Choices 🦀</span></h3>
+    <div class="row">
+      <?php
+      // Assuming you have already established a database connection
+
+      // SQL query to retrieve product data
+      $sql = "SELECT `pID`, `pName`, `pDesc`, `pPrice`, `pPhoto` FROM `product`";
+      $result = mysqli_query($conn, $sql);
+
+      // Check if the query was successful
+      if ($result) {
+        // Loop through the rows and display the data
+        while ($row = mysqli_fetch_assoc($result)) {
+          $pID = $row['pID'];
+          $pName = $row['pName'];
+          $pDesc = $row['pDesc'];
+          $pPrice = $row['pPrice'];
+          $pPhoto = $row['pPhoto'];
+
+          echo '<div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos-delay="100">';
+          echo '<div class="icon-box">';
+          echo "<img src='assets/img/$pPhoto' class='img-fluid' alt='Product Photo'>";
+          echo "<h4>$pName</h4>";
+          echo "<p>$pDesc</p>";
+          echo "<p>₱ $pPrice</p>";
+          echo '<button onclick="editProduct('.$pID.')" class="btn btn-primary">Edit</button>';
+          echo '</div>';
+          echo '</div>';
+        }
+
+        // Free the result set
+        mysqli_free_result($result);
+      } else {
+        // Handle the error if the query fails
+        echo "Error: " . mysqli_error($conn);
+      }
+
+      // Close the database connection
+      mysqli_close($conn);
+      ?>
+      <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos-delay="100">
+        <div class="icon-box">
+          <button onclick="location.href='add_product.php'" class="btn btn-primary">Add Product</button>
         </div>
-
-        <div class="row">
-          <!-- <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100"> -->
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos-delay="100"></div>
-            <div class="icon-box">
-              
-              <img src="assets/img/sftgtub.jpg" class="img-fluid" alt="">
-              <h4><a href="">Spicy Cajun Shrimps</a></h4>
-              <p>Spicy Cajun sauce with Shrimps and Sliced Corns Served in a Tub.</p>
-            </div>
-          </div>
-
-          <!-- <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200"> -->
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0"  data-aos-delay="200"></div>
-            <div class="icon-box">
-              <img src="assets/img/sftgtray.jpg" class="img-fluid" alt="">
-              <h4><a href="">Mixed Cajun Seafoods</a></h4>
-              <p>Spicy Cajun sauce with Shrimps, Crabs, Mussels, and Sliced Corns Served in a Tray.</p>
-            </div>
-          </div>
-
-          <!-- <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300"> -->
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos-delay="300"></div>
-            <div class="icon-box">
-              
-              <img src="assets/img/sftgbottle.png" class="img-fluid" alt="">
-              <h4><a href="">Seafood to Go Cajun Sauce</a></h4>
-              <p>Ready made Cajun Sauce.</p>
-            </div>
-          </div>
-
-          <!-- <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="300"> -->
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4"  data-aos-delay="300"></div>
-            <div class="icon-box">
-              
-              <img src="assets/img/sftgboat.png" class="img-fluid" alt="">
-              <h4><a href="">Seafood to Go Party Boat</a></h4>
-              <p>Spicy Cajun sauce with Shrimps, Crabs, Mussels, and Sliced Corns Served on a Boat.</p>
-            </div>
-          </div>
-
-        </div>
-
       </div>
-    </section><!-- End Services Section -->
+    </div>
+  </div>
+</section><!-- End Services Section -->
+
+<script>
+  function editProduct(pID) {
+    // Redirect to the edit_product.php page with the product ID as a parameter
+    location.href = 'edit_product.php?pID=' + pID;
+  }
+</script>
+
+
 
     <!-- ======= Testimonials Section ======= -->
     
@@ -281,7 +332,7 @@
             <div class="info-box mb-4">
               <i class="bx bx-map"></i>
               <h3>Our Address</h3>
-              <p>746 R.E. Chico Street, Santo Cristo, Baliuag, Bulacan</p>
+              <p><?php echo $address; ?></p>
             </div>
           </div>
 
@@ -305,9 +356,16 @@
 
         <div class="row" data-aos="fade-up" data-aos-delay="100">
 
-          <div class="col-lg-6 ">
-            <iframe class="mb-4 mb-lg-0" src="https://www.google.com/maps/place/XV3V%2BJWR,+Baliwag,+Bulacan/@14.9540734,120.8946296,19z/data=!4m15!1m8!3m7!1s0x339700001fd7ca4b:0x48933424030540dd!2sBaliwag,+Bulacan!3b1!8m2!3d14.9742417!4d120.8945181!16zL20vMDZwdnRs!3m5!1s0x3396555546b11b4b:0x61a1256c6a834ad4!8m2!3d14.9541029!4d120.8947704!16s%2Fg%2F11g0ttr3c_" frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen></iframe>
-          </div>
+          <div class="col-lg-6">
+            <!-- <iframe class="mb-4 mb-lg-0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30880.725352436243!2d120.8946296!3d14.9540734!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3396555546b11b4b%3A0x61a1256c6a834ad4!2sXV3V%2BJWR%2C%20Baliwag%2C%20Bulacan!5e0!3m2!1sen!2sph!4v1620918202455!5m2!1sen!2sph" frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen></iframe> -->
+
+                <?php
+            echo '<iframe class="mb-4 mb-lg-0" src="' .$gps. '" frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen></iframe>';
+        echo '<a href="update_location.php">Edit</a>';
+    ?>
+            </div>
+          
+
 
           <div class="col-lg-6">
             <form action="send.php" method="post" class="">
@@ -349,24 +407,12 @@
           <div class="col-lg-3 col-md-6 footer-contact">
             <h3>Seafood to Go<span></span></h3>
             <p>
-              746 R.E. Chico Street<br>
-              Baliuag, Bulacan 3006<br>
-              Philippines <br><br>
-              <strong>Phone:</strong>09123456789<br>
-              <strong>Email:</strong> seafoodtogo@gmail.com<br>
+              <?php echo $address; ?> <br><br>
+              <strong>Phone:</strong><?php echo $contact; ?><br>
+              <strong>Email:</strong> <?php echo $email; ?><br>
             </p>
           </div>
 
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
 
           <!-- <div class="col-lg-3 col-md-6 footer-links">
             <h4>Our Services</h4>
@@ -383,9 +429,8 @@
             <h4>More of our Platforms</h4>
             <p>Visit our Socials</p>
             <div class="social-links mt-3">
-              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <a href="<?php echo $fb; ?>" class="facebook"><i class="bx bxl-facebook"></i></a>
+          
             </div>
           </div>
 
