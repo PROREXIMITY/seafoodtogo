@@ -6,6 +6,7 @@
 		body {
 			font-family: "Open Sans", sans-serif;
 			color: #444444;
+			background-color: #f2f2f2;
 		}
 
 		a {
@@ -18,18 +19,24 @@
 			text-decoration: none;
 		}
 
-		h1,
-		h2,
-		h3,
-		h4,
-		h5,
-		h6 {
+		.container {
+			width: 300px;
+			margin: 0 auto;
+			margin-top: 100px;
+			padding: 20px;
+			background-color: #ffffff;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		}
+
+		h2 {
 			font-family: "Roboto", sans-serif;
+			text-align: center;
+			margin-bottom: 20px;
 		}
 
 		form {
-			margin: 20px auto;
-			width: 300px;
 			text-align: center;
 		}
 
@@ -83,16 +90,19 @@
 	</style>
 </head>
 <body>
-	<h2>Login</h2>
-	<form method="post" action="logacc.php">
+	<div class="container">
+		<h2>Login</h2>
+		<form method="post" action="logacc.php">
 			<label>Email:</label><br>
 			<input type="text" name="uEmail"><br>
 			<label>Password:</label><br>
 			<input type="password" name="uPass"><br><br>
 			<input type="submit" value="Login">
-	</form>
-	<div class="center">
-    <a class="back-button" href="index.php">Back</a>
+		</form>
+		<div class="center">
+		<a class="back-button" href="index.php">Back</a>
 	</div>
+	</div>
+	
 </body>
 </html>

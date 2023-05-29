@@ -74,7 +74,7 @@ $query2 = "SELECT * FROM information";
 }
 
 .save-button {
-    background-color: #0f9d58;
+    background-color: #f56e00;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -92,6 +92,30 @@ $query2 = "SELECT * FROM information";
 
 .editable[contenteditable="true"] {
     background-color: #fff;
+}
+
+input[type="submit"] {
+			background-color: #f56e00;
+			color: #fff;
+			border: none;
+			padding: 10px 20px;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+
+		input[type="submit"]:hover {
+			background-color: #ff7f00;
+		}
+    textarea {
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
 }
 </style>
 <body>
@@ -115,7 +139,7 @@ $query2 = "SELECT * FROM information";
   <!-- ======= Header ======= -->
   <header id="header" class="d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
-      <h1 class="logo"><a href="index.html" ><img src="assets/img/sftg2.png" alt=""><span></span></a></h1>
+      <h1 class="logo"><a href="admin.php" ><img src="assets/img/sftg2.png" alt=""><span></span></a></h1>
       
    
 
@@ -137,7 +161,7 @@ $query2 = "SELECT * FROM information";
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
     <div class="container" data-aos="zoom-out" data-aos-delay="100">
-      <a href="index.html" class="logo d-flex align-items-center  me-auto me-lg-0">
+      <a href="admin.php" class="logo d-flex align-items-center  me-auto me-lg-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <img src="assets/img/sftg.png" alt=""> 
         <!-- <i class="bi bi-camera"></i> -->
@@ -170,30 +194,47 @@ $query2 = "SELECT * FROM information";
             <img src="assets/img/sftg3.jpg" class="img-fluid" alt="">
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="100">
-        <h3>We cook Fresh and Delicious Authentic Cajun Seafoods for our customers.</h3>
-            <form method= "post" action= "infoupdate.php">
-        <ul>
-            <li>
-                <i class=""></i>
-                
-                <div>
-                    <h3>Mission</h3>
-                    <label for="mis"></label>
-                    <p class="editable" name = "mission"><?php echo $mission; ?></p>
-                </div>
-            </li>
-            <li>
-                <i class=""></i>
-                <div>
-                    <h3>Vision</h3>
-                    <label for="vis"></label>
-                    <p class="editable" name = "vision"><?php echo $vision; ?></p>
-                </div>
-            </li>
-        </ul>
-        <button class="edit-button" onclick="toggleEditable()">Edit</button>
-        <button class="save-button" onclick="saveChanges()">Save</button>
-            </form>
+          <?php
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
+
+    $editedMission = $_POST['mission'];
+    $editedVision = $_POST['vision'];
+
+    $ekuel = "UPDATE information SET mission = '$editedMission', vision = '$editedVision'";
+    $retul = mysqli_query($conn, $ekuel);
+    if($retul){
+    
+    }else {
+
+    }
+}
+?>
+
+<h3>We cook Fresh and Delicious Authentic Cajun Seafoods for our customers.</h3>
+<form method="post" enctype="multipart/form-data">
+    <ul>
+        <li>
+            <i class=""></i>
+            <div>
+                <h3>Mission</h3>
+                <label for="mission"></label>
+                <textarea class="editable" name="mission" style="width: 400px; height: 75px;"><?php echo $mission; ?></textarea>
+            </div>
+        </li>
+        <li>
+            <i class=""></i>
+            <div>
+                <h3>Vision</h3>
+                <label for="vision"></label>
+                <textarea class="editable" name="vision" style="width: 400px; height: 75px;"><?php echo $vision; ?></textarea>
+            </div>
+        </li>
+    </ul>
+    <!-- <button class="edit-button">Edit</button> -->
+    <button class="save-button" type="submit" name= "btn">Save</button>
+</form>
     </div>
     </section><!-- End About Section -->
 
@@ -238,7 +279,12 @@ $query2 = "SELECT * FROM information";
           echo "<h4>$pName</h4>";
           echo "<p>$pDesc</p>";
           echo "<p>₱ $pPrice</p>";
-          echo '<button onclick="editProduct('.$pID.')" class="btn btn-primary">Edit</button>';
+          echo '<button onclick="editProduct('.$pID.')" class="btn btn-primary" style="			background-color: #f56e00;
+          color: #fff;
+          border: none;
+          padding: 10px 20px;
+          border-radius: 4px;
+          cursor: pointer;">Edit</button>';
           echo '</div>';
           echo '</div>';
         }
@@ -253,9 +299,14 @@ $query2 = "SELECT * FROM information";
       // Close the database connection
       mysqli_close($conn);
       ?>
-      <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos-delay="100">
+      <div class="col-lg-4 col-md-6 d-flex align-items-center" data-aos-delay="100">
         <div class="icon-box">
-          <button onclick="location.href='add_product.php'" class="btn btn-primary">Add Product</button>
+          <button onclick="location.href='add_product.php'" class="btn btn-primary" style = "			background-color: #f56e00;
+			color: #fff;
+			border: none;
+			padding: 10px 20px;
+			border-radius: 4px;
+			cursor: pointer;">Add Product</button>
         </div>
       </div>
     </div>
@@ -384,7 +435,7 @@ $query2 = "SELECT * FROM information";
                 <textarea class="form-control" name="message" rows="5" placeholder="Message" value="" required></textarea>
               </div>
             
-              <div class="text-center" name="send"><button type="submit">Send Message</button></div>
+              <div class="text-center" name="send" ><input type="submit"></input></div>
             </form>
           </div>
 
@@ -404,14 +455,33 @@ $query2 = "SELECT * FROM information";
       <div class="container">
         <div class="row">
 
-          <div class="col-lg-3 col-md-6 footer-contact">
-            <h3>Seafood to Go<span></span></h3>
-            <p>
-              <?php echo $address; ?> <br><br>
-              <strong>Phone:</strong><?php echo $contact; ?><br>
-              <strong>Email:</strong> <?php echo $email; ?><br>
-            </p>
-          </div>
+        <div class="col-lg-3 col-md-6 footer-contact">
+    <h3>Seafood to Go<span></span></h3>
+    <form method="post" action="update_information.php">
+        <p>
+            <textarea name="address" style="width: 300px; height: 100px;"><?php echo $address; ?></textarea><br><br>
+            <strong>Phone:</strong><input type="text" name="contact" value="<?php echo $contact; ?>" style=" width: 100%;
+  height: 25px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;"><br>
+            <strong>Email:</strong> <input type="text" name="email" value="<?php echo $email; ?>" style=" width: 100%;
+  height: 25px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none; "><br>
+        </p>
+        <input type="submit" value="Save">
+    </form>
+</div>
 
 
           <!-- <div class="col-lg-3 col-md-6 footer-links">
@@ -453,7 +523,7 @@ $query2 = "SELECT * FROM information";
   </footer><!-- End Footer -->
 
   <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <!-- <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a> -->
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>

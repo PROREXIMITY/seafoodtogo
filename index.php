@@ -109,7 +109,7 @@ $query2 = "SELECT * FROM information";
   <!-- ======= Header ======= -->
   <header id="header" class="d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
-      <h1 class="logo"><a href="index.html" ><img src="assets/img/sftg2.png" alt=""><span></span></a></h1>
+      <h1 class="logo"><a href="index.php" ><img src="assets/img/sftg2.png" alt=""><span></span></a></h1>
       
    
 
@@ -130,7 +130,7 @@ $query2 = "SELECT * FROM information";
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
     <div class="container" data-aos="zoom-out" data-aos-delay="100">
-      <a href="index.html" class="logo d-flex align-items-center  me-auto me-lg-0">
+      <a href="index.php" class="logo d-flex align-items-center  me-auto me-lg-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <img src="assets/img/sftg.png" alt=""> 
         <!-- <i class="bi bi-camera"></i> -->
@@ -361,7 +361,7 @@ $query2 = "SELECT * FROM information";
                 <textarea class="form-control" name="message" rows="5" placeholder="Message" value="" required></textarea>
               </div>
             
-              <div class="text-center" name="send"><button type="submit">Send Message</button></div>
+              <div class="text-center" name="send"><input type="submit"></input></div>
             </form>
           </div>
 
@@ -429,7 +429,7 @@ $query2 = "SELECT * FROM information";
   </footer><!-- End Footer -->
 
   <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <!-- <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a> -->
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>

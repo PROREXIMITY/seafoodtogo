@@ -102,26 +102,130 @@ if (isset($_GET['pID'])) {
     $pPrice = $row['pPrice'];
     $pPhoto = $row['pPhoto'];
 ?>
-    <form method="POST" enctype="multipart/form-data">
-      <label for="pName">Product Name:</label>
-      <input type="text" name="pName" value="<?php echo $pName; ?>">
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Admin</title>
+	<style>
+		body {
+			font-family: "Open Sans", sans-serif;
+			color: #444444;
+			background-color: #f2f2f2;
+		}
 
-      <label for="pDesc">Product Description:</label>
-      <textarea name="pDesc" value="<?php echo $pDesc; ?>"><?php echo $pDesc; ?></textarea>
+		a {
+			color: #f56e00;
+			text-decoration: none;
+		}
 
-      <label for="pPrice">Product Price:</label>
-      <input type="number" name="pPrice" step="0.01" value="<?php echo $pPrice; ?>">
+		a:hover {
+			color: #f56e00;
+			text-decoration: none;
+		}
 
-      <label for="pPhoto">Product Photo:</label>
-      <input type="file" name="pPhoto" value="<?php echo $pPhoto;?>">
+		.container {
+			width: 400px;
+			margin: 0 auto;
+			margin-top: 100px;
+			padding: 20px;
+			background-color: #ffffff;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      
+		}
 
+		h2 {
+			font-family: "Roboto", sans-serif;
+			text-align: center;
+			margin-bottom: 20px;
+		}
 
-      <input type="submit" value="Update Product">
-      <button type="submit" name="delete" onclick="return confirm('Are you sure you want to delete this product?')">Delete Product</button>
-    </form>
-    <div class="center">
-    <a class="back-button" href="admin.php">Back</a>
+		form {
+			text-align: center;
+		}
+
+		label {
+			display: block;
+			margin-bottom: 5px;
+			text-align: left;
+		}
+
+		input[type="text"],
+		input[type="number"],
+		textarea {
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 15px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+		}
+
+		input[type="file"] {
+			margin-top: 5px;
+		}
+
+		input[type="submit"],
+		button {
+			background-color: #f56e00;
+			color: #fff;
+			border: none;
+			padding: 10px 20px;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+
+		input[type="submit"]:hover,
+		button:hover {
+			background-color: #ff7f00;
+		}
+
+		.back-button {
+			display: inline-block;
+			margin-top: 20px;
+			background-color: #f56e00;
+			color: #fff;
+			border: none;
+			padding: 10px 20px;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+
+		.back-button:hover {
+			background-color: #ff7f00;
+		}
+
+		.center {
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h2>Update Product</h2>
+		<form method="POST" enctype="multipart/form-data">
+			<label for="pName">Product Name:</label>
+			<input type="text" name="pName" value="<?php echo $pName; ?>">
+
+			<label for="pDesc">Product Description:</label>
+			<textarea name="pDesc"><?php echo $pDesc; ?></textarea>
+
+			<label for="pPrice">Product Price:</label>
+			<input type="number" name="pPrice" step="0.01" value="<?php echo $pPrice; ?>">
+
+			<label for="pPhoto">Product Photo:</label>
+			<input type="file" name="pPhoto">
+
+			<input type="submit" value="Update Product">
+			<button type="submit" name="delete" onclick="return confirm('Are you sure you want to delete this product?')">Delete Product</button>
+		</form>
+		<div class="center">
+			<a class="back-button" href="admin.php">Back</a>
+		</div>
 	</div>
+</body>
+</html>
 <?php
     // Free the result set
     mysqli_free_result($result);

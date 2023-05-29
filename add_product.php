@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       // Execute the SQL statement
       if (mysqli_query($conn, $sql)) {
-        echo "Product added successfully.";
+        
       } else {
         echo "Error: " . mysqli_error($conn);
       }
@@ -70,7 +70,88 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 }
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Admin</title>
+	<style>
+		body {
+			font-family: "Open Sans", sans-serif;
+			color: #444444;
+			background-color: #f2f2f2;
+		}
+	a {
+		color: #f56e00;
+		text-decoration: none;
+	}
 
+	a:hover {
+		color: #f56e00;
+		text-decoration: none;
+	}
+
+	.container {
+		width: 400px;
+		margin: 0 auto;
+		margin-top: 100px;
+		padding: 20px;
+		background-color: #ffffff;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		box-shadow: 0px 0px 8px #cccccc;
+	}
+
+	label {
+		display: block;
+		margin-bottom: 10px;
+		font-weight: bold;
+	}
+
+	input[type="text"],
+	input[type="number"],
+	textarea {
+		width: 100%;
+		padding: 8px;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		box-sizing: border-box;
+		margin-bottom: 20px;
+	}
+
+	input[type="file"] {
+		margin-bottom: 20px;
+	}
+
+	input[type="submit"] {
+		background-color: #f56e00;
+		color: #ffffff;
+		border: none;
+		border-radius: 4px;
+		padding: 10px 20px;
+		cursor: pointer;
+	}
+
+	.back-button {
+		background-color: #f56e00;
+		color: #ffffff;
+		border: none;
+		border-radius: 4px;
+		padding: 10px 20px;
+		text-align: center;
+		display: inline-block;
+		margin-top: 20px;
+		cursor: pointer;
+	}
+
+	.back-button:hover {
+		background-color: #d64e00;
+	}
+
+	.center {
+		text-align: center;
+	}
+</style>
+<div class="container">
 <!-- HTML form for adding a new product -->
 <form action="add_product.php" method="POST" enctype="multipart/form-data">
   <label for="pName">Product Name:</label>
@@ -90,3 +171,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="center">
     <a class="back-button" href="admin.php">Back</a>
 	</div>
+  </div>

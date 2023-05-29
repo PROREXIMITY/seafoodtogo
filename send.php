@@ -60,6 +60,6 @@ try {
 } catch (Exception $e){
     echo 'Error Sending!';
 }
-    header('location: index.html');
+    header('location: index.php');
 
     

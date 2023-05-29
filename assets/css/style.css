@@ -1420,7 +1420,7 @@ section {
 }
 
 .pricing .btn-buy:hover {
-  background: f56e00#3b8af2;
+  background: #f56e00;
 }
 
 .pricing .featured h3 {
@@ -1640,8 +1640,11 @@ section {
   color: #444444;
   font-size: 14px;
   background: #f1f6fe;
-}
 
+}
+#footer .footer-top.container{
+height: 1000px;
+}
 #footer .footer-newsletter {
   padding: 50px 0;
   background: #f1f6fe;
@@ -1696,6 +1699,11 @@ section {
 #footer .footer-top {
   padding: 60px 0 30px 0;
   background: #fff;
+
+}
+
+#footer .footer-top input[type=submit] {
+  margin-top: 100px;
 }
 
 #footer .footer-top .footer-contact {
